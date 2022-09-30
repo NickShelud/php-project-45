@@ -13,8 +13,10 @@
     ],
     "license": "MIT",
     "require": {
-        "tightenco/collect": "^8.83"
+        "tightenco/collect": "^8.83",
+        "wp-cli/php-cli-tools": "^0.11.15"
     },
+    "description": "hexlet php-package",
     "bin": [
         "bin/brain-games"
     ]
