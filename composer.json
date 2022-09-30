@@ -11,5 +11,10 @@
             "email": "N.She.1997@mail.ru"
         }
     ],
-    "require": {}
+    "require": {
+        "tightenco/collect": "^8.83"
+    },
+    "bin": [
+        "bin/brain-games"
+    ]
 }
