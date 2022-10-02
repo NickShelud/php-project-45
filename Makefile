@@ -1,6 +1,3 @@
-say:
-	echo 'hello world'
-
 install:
 	composer install
 
