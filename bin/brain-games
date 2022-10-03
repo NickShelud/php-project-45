@@ -1,4 +1,4 @@
-@#!/usr/bin/php;
+#!/usr/bin/php;
 
 $autoloadPath2  __DIR__ . '/../vendor/autoload.php';
 
