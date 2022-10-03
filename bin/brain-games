@@ -1,0 +1,7 @@
+@#!/usr/bin/php;
+
+$autoloadPath2  __DIR__ . '/../vendor/autoload.php';
+
+use function BrainGames\Cli\gettingName;
+
+gettingName;
