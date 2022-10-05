@@ -1,5 +1,6 @@
-#!/usr/bin/env php;
+#!/usr/bin/env php
 
-$autoloadPath2  __DIR__ . '/../vendor/autoload.php';
+<?php
+require_once  __DIR__ . '/../vendor/autoload.php';
 
 echo "done";

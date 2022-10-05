@@ -1,9 +1,13 @@
 {
     "name": "hexlet/code",
+    "description": "project brain games",
     "autoload": {
         "psr-4": {
             "Hexlet\\Code\\": "src/"
-        }
+        },
+        "files": [
+            "src/Cli.php"
+        ]
     },
     "authors": [
         {
@@ -16,7 +20,6 @@
         "tightenco/collect": "^8.83",
         "wp-cli/php-cli-tools": "^0.11.15"
     },
-    "description": "hexlet php-package",
     "bin": [
         "bin/brain-games",
         "bin/brain-even"
