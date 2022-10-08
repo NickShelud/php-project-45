@@ -4,28 +4,9 @@ namespace BrainGames\Even;
 
 use function cli\line;
 use function cli\prompt;
-
-function createRandArr()
-{
-    for ($i = 0; $i < 3; $i++) {
-        $arr[] = rand(1, 100);
-    };
-    return $arr;
-}
-//$randArr = createRandArr();
-
-function checkForParity($randArr)
-{
-    foreach ($randArr as $item) {
-        if ((int) $item % 2 == 0) {
-            $correctAnswerArr[] = 'yes';
-        } else {
-            $correctAnswerArr[] = 'no';
-        }
-    }
-    return $correctAnswerArr;
-}
-//$correctAnswerArr = checkForParity($randArr);
+use function BrainGames\Engine\createRandArr;
+use function BrainGames\Engine\congratulations;
+use function BrainGames\Engine\checkForParity;
 
 function checkAnswers($name)
 {
@@ -33,7 +14,7 @@ function checkAnswers($name)
     $correctAnswerArr = checkForParity($randArr);
     $counter = 0;
     for ($i = 0; $i < 3; $i++) {
-        line("{$randArr[$i]}");
+        line("Question: {$randArr[$i]}");
         $answer = prompt('Your answer');
         if ($answer === $correctAnswerArr[$i]) {
             line('Correct');
@@ -47,7 +28,5 @@ function checkAnswers($name)
         }
     
     }
-    if ($counter === 3) {
-        line("Congratulations %s!", $name);
-    }
+    congratulations($counter, $name);
 }

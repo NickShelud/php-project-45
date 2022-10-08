@@ -11,13 +11,13 @@ if (file_exists($autoloadPath1)) {
 }
 
 use function BrainGames\Even\checkAnswers;
-use function BrainGames\Cli\gettingName;
+use function BrainGames\Engine\gettingName;
 
 function even()
 {
-$name = gettingName();
+	$name = gettingName();
 
-checkAnswers($name);
+	checkAnswers($name);
 }
 
 even();

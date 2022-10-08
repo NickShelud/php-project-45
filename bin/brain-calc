@@ -11,5 +11,13 @@ if (file_exists($autoloadPath1)) {
 }
 
 use function BrainGames\Engine\gettingName;
+use function BrainGames\Calc\calc;
 
-gettingName();
+function brainCalc()
+{
+	$name = gettingName();
+
+	calc($name);	
+}
+
+brainCalc();

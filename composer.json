@@ -6,9 +6,9 @@
             "Hexlet\\Code\\": "src/"
         },
         "files": [
-            "src/Cli.php",
-            "src/Even.php"
-
+            "src/Games/Even.php",
+            "src/Games/Calc.php",
+            "src/Engine.php"
         ]
     },
     "authors": [
@@ -24,7 +24,8 @@
     },
     "bin": [
         "bin/brain-games",
-        "bin/brain-even"
+        "bin/brain-even",
+        "bin/brain-calc"
     ],
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.7"
