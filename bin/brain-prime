@@ -11,13 +11,13 @@ if (file_exists($autoloadPath1)) {
 }
 
 use function BrainGames\Engine\gettingName;
-use function BrainGames\Progression\progression;
+use function BrainGames\Prime\prime;
 
 function brainPrime()
 {
 	$name = gettingName();
 
-	//progression($name);	
+	prime($name);	
 }
 
 brainPrime();
