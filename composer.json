@@ -8,6 +8,7 @@
         "files": [
             "src/Games/Even.php",
             "src/Games/Calc.php",
+            "src/Games/Gcd.php",
             "src/Engine.php"
         ]
     },
@@ -25,7 +26,8 @@
     "bin": [
         "bin/brain-games",
         "bin/brain-even",
-        "bin/brain-calc"
+        "bin/brain-calc",
+        "bin/brain-gcd"
     ],
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.7"

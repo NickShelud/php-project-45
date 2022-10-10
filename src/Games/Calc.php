@@ -6,6 +6,7 @@ use function cli\line;
 use function cli\prompt;
 use function BrainGames\Engine\createRandArr;
 use function BrainGames\Engine\congratulations;
+use function BrainGames\Engine\printMessageWrongAnswer;
 
 function choiceOperator()
 {
@@ -47,7 +48,7 @@ function calc($name)
             line("Correct!");
             $counter++;
         } else {
-            line("'{$answer}' is wrong answer ;(. Correct answer was '{$resultExpression}'.");
+            printMessageWrongAnswer($resultExpression, $answer, $name);
             exit;
         }
     }

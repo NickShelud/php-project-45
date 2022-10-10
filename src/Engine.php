@@ -35,10 +35,17 @@ function checkForParity($randArr)
     return $correctAnswerArr;
 }
 
+//if answer was wrong, print this message
+function printMessageWrongAnswer($correctAnswer, $playerAnswer, $name)
+{
+    line("'{$playerAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.");
+    line("Let's try again, {$name}!");
+}
+
 //print in case of victory
 function congratulations($counter, $name)
 {
     if ($counter === 3) {
-        line("Congratulations %s!", $name);
+        line("Congratulations, %s!", $name);
     }
 }
