@@ -7,6 +7,7 @@ use function cli\prompt;
 use function BrainGames\Engine\createRandArr;
 use function BrainGames\Engine\congratulations;
 use function BrainGames\Engine\checkForParity;
+use function BrainGames\Engine\printMessageWrongAnswer;
 
 function checkAnswers($name)
 {
@@ -20,11 +21,8 @@ function checkAnswers($name)
         if ($answer === $correctAnswerArr[$i]) {
             line('Correct');
             $counter++;
-        } elseif ($answer === 'no' and $correctAnswerArr[$i] === 'yes') {
-            line("'no' is wrong answer ;(. Correct answer was 'yes'.");
-            exit;
         } else {
-            line("'yes' is wrong answer ;(. Correct answer was 'no'.");
+            printMessageWrongAnswer($correctAnswerArr[$i], $answer, $name);
             exit;
         }
     }
