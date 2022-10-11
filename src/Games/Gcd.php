@@ -12,14 +12,14 @@ function findGcd(int $firstDigit, int $secondDigit)
 {
     $firstDigitDivider = array();
     $secondDigitDivider = array();
-    for ($i = 1; $i <= (int) $firstDigit; $i++) {
+    for ($i = 1; $i <= $firstDigit; $i++) {
         //firstDigitDivider contains all the divisors of a number
         if ($firstDigit % $i === 0) {
             $firstDigitDivider[] = $i;
         }
     }
 
-    for ($i = 1; $i <= (int) $secondDigit; $i++) {
+    for ($i = 1; $i <= $secondDigit; $i++) {
         //secondDigitDivider contains all the divisors of a number
         if ($secondDigit % $i === 0) {
             $secondDigitDivider[] = $i;

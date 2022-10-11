@@ -49,6 +49,7 @@ function calc(string $name)
             line("Correct!");
             $counter++;
         } else {
+            $resultExpression = (string) $resultExpression;
             printMessageWrongAnswer($resultExpression, $answer, $name);
             exit;
         }

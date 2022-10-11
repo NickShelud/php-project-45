@@ -26,7 +26,7 @@ function createRandArr()
 //checking responses in an array
 function checkForParity(array $randArr)
 {
-    $correctAnswer = array();
+    $correctAnswerArr = array();
     foreach ($randArr as $item) {
         if ((int) $item % 2 == 0) {
             $correctAnswerArr[] = 'yes';
