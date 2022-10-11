@@ -26,7 +26,6 @@ function checkAnswers($name)
             line("'yes' is wrong answer ;(. Correct answer was 'no'.");
             exit;
         }
-    
     }
     congratulations($counter, $name);
 }

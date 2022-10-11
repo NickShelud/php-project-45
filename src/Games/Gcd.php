@@ -31,7 +31,7 @@ function findGcd($firstDigit, $secondDigit)
 
 function gcd($name)
 {
-    line ("Find the greatest common divisor of given numbers.");
+    line("Find the greatest common divisor of given numbers.");
 
     $arrayOne = createRandArr();
     $arrayTwo = createRandArr();
@@ -53,4 +53,3 @@ function gcd($name)
     }
     congratulations($counter, $name);
 }
-

@@ -46,7 +46,6 @@ function progression($name)
     for ($i = 0; $i < 3; $i++) {
         $arrRand = createRandProgression();
         $arr = choiceRandDigit($arrRand);
-    
         $hiddenDigit = $arr[0];
         $arrayWhisProgression = implode(' ', $arr[1]);
 
