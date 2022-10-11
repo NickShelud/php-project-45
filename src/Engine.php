@@ -16,6 +16,7 @@ function gettingName()
 //create random array
 function createRandArr()
 {
+    $arr = array();
     for ($i = 0; $i < 3; $i++) {
         $arr[] = rand(1, 100);
     };
@@ -23,8 +24,9 @@ function createRandArr()
 }
 
 //checking responses in an array
-function checkForParity($randArr)
+function checkForParity(array $randArr)
 {
+    $correctAnswer = array();
     foreach ($randArr as $item) {
         if ((int) $item % 2 == 0) {
             $correctAnswerArr[] = 'yes';
@@ -36,14 +38,14 @@ function checkForParity($randArr)
 }
 
 //if answer was wrong, print this message
-function printMessageWrongAnswer($correctAnswer, $playerAnswer, $name)
+function printMessageWrongAnswer(string $correctAnswer, string $playerAnswer, string $name)
 {
     line("'{$playerAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.");
     line("Let's try again, {$name}!");
 }
 
 //print in case of victory
-function congratulations($counter, $name)
+function congratulations(int $counter, string $name)
 {
     if ($counter === 3) {
         line("Congratulations, %s!", $name);

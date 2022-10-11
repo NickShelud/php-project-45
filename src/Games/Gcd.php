@@ -8,8 +8,10 @@ use function BrainGames\Engine\createRandArr;
 use function BrainGames\Engine\congratulations;
 use function BrainGames\Engine\printMessageWrongAnswer;
 
-function findGcd($firstDigit, $secondDigit)
+function findGcd(int $firstDigit, int $secondDigit)
 {
+    $firstDigitDivider = array();
+    $secondDigitDivider = array();
     for ($i = 1; $i <= (int) $firstDigit; $i++) {
         //firstDigitDivider contains all the divisors of a number
         if ($firstDigit % $i === 0) {
@@ -29,7 +31,7 @@ function findGcd($firstDigit, $secondDigit)
     return max($commonDivisor);
 }
 
-function gcd($name)
+function gcd(string $name)
 {
     line("Find the greatest common divisor of given numbers.");
 

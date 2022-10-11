@@ -8,7 +8,7 @@ use function BrainGames\Engine\createRandArr;
 use function BrainGames\Engine\congratulations;
 use function BrainGames\Engine\printMessageWrongAnswer;
 
-function checkPrime($digit)
+function checkPrime(int $digit)
 {
     $counter = 0;
     for ($i = 1; $i <= $digit; $i++) {
@@ -26,7 +26,7 @@ function checkPrime($digit)
     }
 }
 
-function prime($name)
+function prime(string $name)
 {
     line('Answer "yes" if given number is prime. Otherwise answer "no".');
     $counter = 0;
@@ -37,7 +37,7 @@ function prime($name)
         line("Question: {$randDigit}");
         $answer = prompt("Your answer");
 
-        if ((string) $answer === (string) $correctAnswer) {
+        if ($answer === $correctAnswer) {
             line("Correct!");
             $counter++;
         } else {

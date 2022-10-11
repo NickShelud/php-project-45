@@ -19,7 +19,7 @@ function choiceOperator()
     return $arrayWithOperator;
 }
 
-function calc($name)
+function calc(string $name)
 {
     line("What is the result of the expression?");
 
@@ -27,6 +27,7 @@ function calc($name)
     $arrayTwo = createRandArr();
     $counter = 0;
     $arrayWithOperator = choiceOperator();
+    $resultExpression = 0;
 
     for ($i = 0; $i < 3; $i++) {
         line("Question: {$arrayOne[$i]} {$arrayWithOperator[$i]} {$arrayTwo[$i]}");

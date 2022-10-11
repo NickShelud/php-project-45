@@ -9,7 +9,7 @@ use function BrainGames\Engine\congratulations;
 use function BrainGames\Engine\checkForParity;
 use function BrainGames\Engine\printMessageWrongAnswer;
 
-function checkAnswers($name)
+function checkAnswers(string $name)
 {
     line('Answer "yes" if the number is even, otherwise answer "no".');
     $randArr = createRandArr();

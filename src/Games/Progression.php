@@ -26,7 +26,7 @@ function createRandProgression()
     return $progressionArr;
 }
 
-function choiceRandDigit($randArray)
+function choiceRandDigit(array $randArray)
 {
     $count = count($randArray);
     $randIndex = rand(0, $count - 1);
@@ -37,7 +37,7 @@ function choiceRandDigit($randArray)
     return [$hiddenDigit, $randArray];
 }
 
-function progression($name)
+function progression(string $name)
 {
     $counter = 0;
 
