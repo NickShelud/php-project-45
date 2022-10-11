@@ -10,8 +10,8 @@ use function BrainGames\Engine\printMessageWrongAnswer;
 
 function checkPrime($digit)
 {
-    $countDivisor = 2;
-    for ($i = 2; $i < $digit; $i++) {
+    $countDivisor = 0;
+    for ($i = 1; $i < $digit; $i++) {
         if ($digit % $i === 0) {
             return 'no';
         } else {
