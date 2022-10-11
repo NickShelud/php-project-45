@@ -29,7 +29,7 @@ function createRandProgression()
 function choiceRandDigit($randArray)
 {
     $count = count($randArray);
-    $randIndex = rand(0, $count-1);
+    $randIndex = rand(0, $count - 1);
 
     $hiddenDigit = $randArray[$randIndex];
     $randArray[$randIndex] = '..';
