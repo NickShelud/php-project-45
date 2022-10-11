@@ -10,6 +10,7 @@ use function BrainGames\Engine\checkForParity;
 
 function checkAnswers($name)
 {
+    line('Answer "yes" if the number is even, otherwise answer "no".');
     $randArr = createRandArr();
     $correctAnswerArr = checkForParity($randArr);
     $counter = 0;
