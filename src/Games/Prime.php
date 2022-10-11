@@ -10,14 +10,15 @@ use function BrainGames\Engine\printMessageWrongAnswer;
 
 function checkPrime($digit)
 {
-    $countDivisor = 0;
-    for ($i = 1; $i < $digit; $i++) {
+    if ($digit === 2) {
+        return 'yes';
+    }
+    for ($i = 2; $i < $digit; $i++) {
         if ($digit % $i === 0) {
             return 'no';
-        } else {
-            return 'yes';
-        }
+        } 
     }
+    return 'yes';
 }
 
 function prime($name)
