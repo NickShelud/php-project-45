@@ -4,9 +4,22 @@ namespace BrainGames\Calc;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\createRandArr;
 use function BrainGames\Engine\congratulations;
 use function BrainGames\Engine\printMessageWrongAnswer;
+use function BrainGames\Engine\askQuestion;
+use function BrainGames\Engine\getUserResponse;
+use function BrainGames\Engine\checkAnswer;
+use const BrainGames\Engine\COUNT_ITERATION;
+
+//create random array
+function createRandArr()
+{
+    $arr = array();
+    for ($i = 0; $i < 3; $i++) {
+        $arr[] = rand(1, 100);
+    };
+    return $arr;
+}
 
 function choiceOperator()
 {
@@ -21,7 +34,9 @@ function choiceOperator()
 
 function calc(string $name)
 {
-    line("What is the result of the expression?");
+    define('TASK', 'What is the result of the expression?');
+    line(TASK);
+    
 
     $arrayOne = createRandArr();
     $arrayTwo = createRandArr();
@@ -29,9 +44,10 @@ function calc(string $name)
     $arrayWithOperator = choiceOperator();
     $resultExpression = 0;
 
-    for ($i = 0; $i < 3; $i++) {
-        line("Question: {$arrayOne[$i]} {$arrayWithOperator[$i]} {$arrayTwo[$i]}");
-        $answer = prompt("Your answer");
+    for ($i = 0; $i < COUNT_ITERATION; $i++) {
+        $taskForGame = "{$arrayOne[$i]} {$arrayWithOperator[$i]} {$arrayTwo[$i]}";
+        askQuestion($taskForGame);
+        $answer = getUserResponse();
 
         switch ($arrayWithOperator[$i]) {
             case '+':
@@ -44,15 +60,6 @@ function calc(string $name)
                 $resultExpression = $arrayOne[$i] * $arrayTwo[$i];
                 break;
         }
-
-        if ((int) $answer === $resultExpression) {
-            line("Correct!");
-            $counter++;
-        } else {
-            $resultExpression = (string) $resultExpression;
-            printMessageWrongAnswer($resultExpression, $answer, $name);
-            exit;
-        }
     }
-    congratulations($counter, $name);
-}
+
+checkAnswer($answer, $resultExpression, $counter, $name);

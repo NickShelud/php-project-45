@@ -4,9 +4,11 @@ namespace BrainGames\Progression;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\createRandArr;
 use function BrainGames\Engine\congratulations;
 use function BrainGames\Engine\printMessageWrongAnswer;
+use function BrainGames\Engine\askQuestion;
+use function BrainGames\Engine\getUserResponse;
+use const BrainGames\Engine\COUNT_ITERATION;
 
 function createRandProgression()
 {
@@ -41,16 +43,18 @@ function progression(string $name)
 {
     $counter = 0;
 
-    line('What number is missing in the progression?');
+    define('TASK', 'What number is missing in the progression?');
+    line(TASK);
 
-    for ($i = 0; $i < 3; $i++) {
+    for ($i = 0; $i < COUNT_ITERATION; $i++) {
         $arrRand = createRandProgression();
         $arr = choiceRandDigit($arrRand);
         $hiddenDigit = $arr[0];
         $arrayWhisProgression = implode(' ', $arr[1]);
 
-        line("Question: {$arrayWhisProgression}");
-        $answer = prompt("Your answer");
+        $taskForGame = "{$arrayWhisProgression}";
+        askQuestion($taskForGame);
+        $answer = getUserResponse();
 
         if ((int) $answer === $hiddenDigit) {
             line("Correct!");

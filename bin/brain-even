@@ -11,14 +11,8 @@ if (file_exists($autoloadPath1)) {
 }
 
 use function BrainGames\Even\checkAnswers;
-use function BrainGames\Engine\gettingName;
+use function BrainGames\Cli\gettingName;
 
-function even()
-{
-	$name = gettingName();
-
-	checkAnswers($name);
-}
-
-even();
+$name = gettingName();
+checkAnswers($name);
 

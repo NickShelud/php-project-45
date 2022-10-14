@@ -5,22 +5,19 @@ namespace BrainGames\Engine;
 use function cli\line;
 use function cli\prompt;
 
-//welcomes the player and asks for their name
-function gettingName()
+//number of game iterations
+const COUNT_ITERATION = 3;
+
+//question for user
+function askQuestion($taskForGame)
 {
-    line('Welcome to the Brain Games!');
-    $name = prompt('May I have your name?');
-    line("Hello, %s!", $name);
-    return $name;
+    line("Question: {$taskForGame}");
+
 }
-//create random array
-function createRandArr()
+
+function getUserResponse()
 {
-    $arr = array();
-    for ($i = 0; $i < 3; $i++) {
-        $arr[] = rand(1, 100);
-    };
-    return $arr;
+    return prompt("Your answer");
 }
 
 //checking responses in an array
@@ -47,7 +44,18 @@ function printMessageWrongAnswer(string $correctAnswer, string $playerAnswer, st
 //print in case of victory
 function congratulations(int $counter, string $name)
 {
-    if ($counter === 3) {
         line("Congratulations, %s!", $name);
+}
+
+function checkAnswer($answer, $resultExpression, $counter, $name)
+{
+    if ((int) $answer === $resultExpression) {
+        line("Correct!");
+        $counter++;
+    } else {
+        $resultExpression = (string) $resultExpression;
+        printMessageWrongAnswer($resultExpression, $answer, $name);
+        exit;
     }
+    congratulations($counter, $name);
 }

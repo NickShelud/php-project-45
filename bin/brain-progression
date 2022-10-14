@@ -10,14 +10,9 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-use function BrainGames\Engine\gettingName;
+use function BrainGames\Cli\gettingName;
 use function BrainGames\Progression\progression;
 
-function brainProgression()
-{
-	$name = gettingName();
+$name = gettingName();
+progression($name);	
 
-	progression($name);	
-}
-
-brainProgression();

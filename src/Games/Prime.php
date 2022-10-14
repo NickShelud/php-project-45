@@ -4,9 +4,11 @@ namespace BrainGames\Prime;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\createRandArr;
 use function BrainGames\Engine\congratulations;
 use function BrainGames\Engine\printMessageWrongAnswer;
+use function BrainGames\Engine\askQuestion;
+use function BrainGames\Engine\getUserResponse;
+use const BrainGames\Engine\COUNT_ITERATION;
 
 function checkPrime(int $digit)
 {
@@ -28,14 +30,17 @@ function checkPrime(int $digit)
 
 function prime(string $name)
 {
-    line('Answer "yes" if given number is prime. Otherwise answer "no".');
+    define('TASK', 'Answer "yes" if given number is prime. Otherwise answer "no".');
+    line(TASK);
     $counter = 0;
 
-    for ($i = 0; $i < 3; $i++) {
+    for ($i = 0; $i < COUNT_ITERATION; $i++) {
         $randDigit = rand(1, 100);
         $correctAnswer = checkPrime($randDigit);
-        line("Question: {$randDigit}");
-        $answer = prompt("Your answer");
+
+        $taskForGame = "{$randDigit}";
+        askQuestion($taskForGame);
+        $answer = getUserResponse();
 
         if ($answer === $correctAnswer) {
             line("Correct!");
