@@ -2,9 +2,6 @@
     "name": "hexlet/code",
     "description": "project brain games",
     "autoload": {
-        "psr-4": {
-            "Hexlet\\Code\\": "src/"
-        },
         "files": [
             "src/Games/Even.php",
             "src/Games/Calc.php",

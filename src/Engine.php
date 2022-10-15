@@ -12,7 +12,6 @@ const COUNT_ITERATION = 3;
 function askQuestion($taskForGame)
 {
     line("Question: {$taskForGame}");
-
 }
 
 function getUserResponse()
@@ -42,20 +41,18 @@ function printMessageWrongAnswer(string $correctAnswer, string $playerAnswer, st
 }
 
 //print in case of victory
-function congratulations(int $counter, string $name)
+function congratulations(string $name)
 {
         line("Congratulations, %s!", $name);
 }
 
-function checkAnswer($answer, $resultExpression, $counter, $name)
+function checkAnswer($answer, $resultExpression, $name)
 {
-    if ((int) $answer === $resultExpression) {
+    if ($answer === $resultExpression) {
         line("Correct!");
-        $counter++;
     } else {
         $resultExpression = (string) $resultExpression;
         printMessageWrongAnswer($resultExpression, $answer, $name);
         exit;
     }
-    congratulations($counter, $name);
 }

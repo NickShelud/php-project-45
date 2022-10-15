@@ -8,6 +8,8 @@ use function BrainGames\Engine\congratulations;
 use function BrainGames\Engine\printMessageWrongAnswer;
 use function BrainGames\Engine\askQuestion;
 use function BrainGames\Engine\getUserResponse;
+use function BrainGames\Engine\checkAnswer;
+
 use const BrainGames\Engine\COUNT_ITERATION;
 
 function createRandProgression()
@@ -41,8 +43,6 @@ function choiceRandDigit(array $randArray)
 
 function progression(string $name)
 {
-    $counter = 0;
-
     define('TASK', 'What number is missing in the progression?');
     line(TASK);
 
@@ -56,13 +56,7 @@ function progression(string $name)
         askQuestion($taskForGame);
         $answer = getUserResponse();
 
-        if ((int) $answer === $hiddenDigit) {
-            line("Correct!");
-            $counter++;
-        } else {
-            printMessageWrongAnswer($hiddenDigit, $answer, $name);
-            exit;
-        }
+        checkAnswer((int) $answer, $hiddenDigit, $name);
     }
-    congratulations($counter, $name);
+    congratulations($name);
 }

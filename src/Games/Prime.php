@@ -8,6 +8,8 @@ use function BrainGames\Engine\congratulations;
 use function BrainGames\Engine\printMessageWrongAnswer;
 use function BrainGames\Engine\askQuestion;
 use function BrainGames\Engine\getUserResponse;
+use function BrainGames\Engine\checkAnswer;
+
 use const BrainGames\Engine\COUNT_ITERATION;
 
 function checkPrime(int $digit)
@@ -32,7 +34,6 @@ function prime(string $name)
 {
     define('TASK', 'Answer "yes" if given number is prime. Otherwise answer "no".');
     line(TASK);
-    $counter = 0;
 
     for ($i = 0; $i < COUNT_ITERATION; $i++) {
         $randDigit = rand(1, 100);
@@ -42,13 +43,7 @@ function prime(string $name)
         askQuestion($taskForGame);
         $answer = getUserResponse();
 
-        if ($answer === $correctAnswer) {
-            line("Correct!");
-            $counter++;
-        } else {
-            printMessageWrongAnswer($correctAnswer, $answer, $name);
-            exit;
-        }
+        checkAnswer($answer, $correctAnswer, $name);
     }
-    congratulations($counter, $name);
+    congratulations($name);
 }

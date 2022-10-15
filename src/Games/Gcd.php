@@ -8,6 +8,8 @@ use function BrainGames\Engine\congratulations;
 use function BrainGames\Engine\printMessageWrongAnswer;
 use function BrainGames\Engine\askQuestion;
 use function BrainGames\Engine\getUserResponse;
+use function BrainGames\Engine\checkAnswer;
+
 use const BrainGames\Engine\COUNT_ITERATION;
 
 //create random array
@@ -59,13 +61,7 @@ function gcd(string $name)
 
         $correctAnswer = findGcd($arrayOne[$i], $arrayTwo[$i]);
 
-        if ((int) $answer === $correctAnswer) {
-            line("Correct!");
-            $counter++;
-        } else {
-            printMessageWrongAnswer($correctAnswer, $answer, $name);
-            exit;
-        }
+        checkAnswer((int) $answer, $correctAnswer, $name);
     }
-    congratulations($counter, $name);
+    congratulations($name);
 }

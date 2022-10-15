@@ -9,6 +9,7 @@ use function BrainGames\Engine\printMessageWrongAnswer;
 use function BrainGames\Engine\askQuestion;
 use function BrainGames\Engine\getUserResponse;
 use function BrainGames\Engine\checkAnswer;
+
 use const BrainGames\Engine\COUNT_ITERATION;
 
 //create random array
@@ -36,11 +37,9 @@ function calc(string $name)
 {
     define('TASK', 'What is the result of the expression?');
     line(TASK);
-    
 
     $arrayOne = createRandArr();
     $arrayTwo = createRandArr();
-    $counter = 0;
     $arrayWithOperator = choiceOperator();
     $resultExpression = 0;
 
@@ -60,6 +59,7 @@ function calc(string $name)
                 $resultExpression = $arrayOne[$i] * $arrayTwo[$i];
                 break;
         }
+        checkAnswer((int) $answer, $resultExpression, $name);
     }
-
-checkAnswer($answer, $resultExpression, $counter, $name);
+    congratulations($name);
+}

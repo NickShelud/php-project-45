@@ -9,6 +9,8 @@ use function BrainGames\Engine\checkForParity;
 use function BrainGames\Engine\printMessageWrongAnswer;
 use function BrainGames\Engine\askQuestion;
 use function BrainGames\Engine\getUserResponse;
+use function BrainGames\Engine\checkAnswer;
+
 use const BrainGames\Engine\COUNT_ITERATION;
 
 //create random array
@@ -27,20 +29,13 @@ function checkAnswers(string $name)
     line(TASK);
     $randArr = createRandArr();
     $correctAnswerArr = checkForParity($randArr);
-    $counter = 0;
 
     for ($i = 0; $i < COUNT_ITERATION; $i++) {
         $taskForGame = "{$randArr[$i]}";
         askQuestion($taskForGame);
         $answer = getUserResponse();
 
-        if ($answer === $correctAnswerArr[$i]) {
-            line('Correct');
-            $counter++;
-        } else {
-            printMessageWrongAnswer($correctAnswerArr[$i], $answer, $name);
-            exit;
-        }
+        checkAnswer($answer, $correctAnswerArr[$i], $name);
     }
-    congratulations($counter, $name);
+    congratulations($name);
 }
