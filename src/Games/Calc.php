@@ -59,7 +59,7 @@ function calc(string $name)
                 $resultExpression = $arrayOne[$i] * $arrayTwo[$i];
                 break;
         }
-        checkAnswer($answer, $resultExpression, $name);
+        checkAnswer($answer, (string) $resultExpression, $name);
     }
     congratulations($name);
 }
