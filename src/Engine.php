@@ -9,7 +9,7 @@ use function cli\prompt;
 const COUNT_ITERATION = 3;
 
 //question for user
-function askQuestion($taskForGame)
+function askQuestion(string $taskForGame)
 {
     line("Question: {$taskForGame}");
 }
@@ -46,7 +46,7 @@ function congratulations(string $name)
         line("Congratulations, %s!", $name);
 }
 
-function checkAnswer($answer, $resultExpression, $name)
+function checkAnswer(string $answer, string $resultExpression, string $name)
 {
     if ($answer === $resultExpression) {
         line("Correct!");
