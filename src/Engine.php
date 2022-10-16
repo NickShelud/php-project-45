@@ -51,7 +51,7 @@ function checkAnswer(string $answer, string $resultExpression, string $name)
     if ($answer === $resultExpression) {
         line("Correct!");
     } else {
-        $resultExpression = (string) $resultExpression;
+        $resultExpression = $resultExpression;
         printMessageWrongAnswer($resultExpression, $answer, $name);
         exit;
     }

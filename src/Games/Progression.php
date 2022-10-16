@@ -56,7 +56,7 @@ function progression(string $name)
         askQuestion($taskForGame);
         $answer = getUserResponse();
 
-        checkAnswer((int) $answer, $hiddenDigit, $name);
+        checkAnswer($answer, $hiddenDigit, $name);
     }
     congratulations($name);
 }

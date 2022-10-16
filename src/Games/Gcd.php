@@ -61,7 +61,7 @@ function gcd(string $name)
 
         $correctAnswer = findGcd($arrayOne[$i], $arrayTwo[$i]);
 
-        checkAnswer((int) $answer, $correctAnswer, $name);
+        checkAnswer($answer, $correctAnswer, $name);
     }
     congratulations($name);
 }
