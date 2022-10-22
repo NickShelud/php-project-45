@@ -12,6 +12,8 @@ use function BrainGames\Engine\checkAnswer;
 
 use const BrainGames\Engine\COUNT_ITERATION;
 
+const TASK = 'What is the result of the expression?';
+
 //create random array
 function createRandArr()
 {
@@ -33,10 +35,9 @@ function choiceOperator()
     return $arrayWithOperator;
 }
 
-function calc(string $name)
+function calculate(string $name)
 {
-    define('TASK', 'What is the result of the expression?');
-    line(TASK);
+    //line(TASK);
 
     $arrayOne = createRandArr();
     $arrayTwo = createRandArr();
@@ -44,9 +45,10 @@ function calc(string $name)
     $resultExpression = 0;
 
     for ($i = 0; $i < COUNT_ITERATION; $i++) {
+        $counter = $i;
+        $task = TASK;
         $taskForGame = "{$arrayOne[$i]} {$arrayWithOperator[$i]} {$arrayTwo[$i]}";
-        askQuestion($taskForGame);
-        $answer = getUserResponse();
+        $answer = askQuestion($taskForGame, $task, $counter);
 
         switch ($arrayWithOperator[$i]) {
             case '+':
@@ -59,7 +61,6 @@ function calc(string $name)
                 $resultExpression = $arrayOne[$i] * $arrayTwo[$i];
                 break;
         }
-        checkAnswer($answer, (string) $resultExpression, $name);
+        checkAnswer($answer, (string) $resultExpression, $name, $counter);
     }
-    congratulations($name);
 }

@@ -9,9 +9,14 @@ use function cli\prompt;
 const COUNT_ITERATION = 3;
 
 //question for user
-function askQuestion(string $taskForGame)
+function askQuestion(string $taskForGame, $task, $counter)
 {
+    if ($counter === 0) {
+        line($task);
+    }
+
     line("Question: {$taskForGame}");
+    return prompt("Your answer");
 }
 
 function getUserResponse()
@@ -33,26 +38,16 @@ function checkForParity(array $randArr)
     return $correctAnswerArr;
 }
 
-//if answer was wrong, print this message
-function printMessageWrongAnswer(string $correctAnswer, string $playerAnswer, string $name)
+function checkAnswer(string $playerAnswer, string $correctAnswer, string $name, int $counter)
 {
-    line("'{$playerAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.");
-    line("Let's try again, {$name}!");
-}
-
-//print in case of victory
-function congratulations(string $name)
-{
-        line("Congratulations, %s!", $name);
-}
-
-function checkAnswer(string $answer, string $resultExpression, string $name)
-{
-    if ($answer === $resultExpression) {
+    if ($playerAnswer === $correctAnswer) {
         line("Correct!");
+        if ($counter === 2) {
+            line("Congratulations, %s!", $name);
+        }
     } else {
-        $resultExpression = $resultExpression;
-        printMessageWrongAnswer($resultExpression, $answer, $name);
+        line("'{$playerAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.");
+        line("Let's try again, {$name}!");
         exit;
     }
 }

@@ -11,9 +11,9 @@ if (file_exists($autoloadPath1)) {
 }
 
 use function BrainGames\Cli\gettingName;
-use function BrainGames\Prime\prime;
+use function BrainGames\Prime\getPrime;
 
 $name = gettingName();
-prime($name);	
+getPrime($name);	
 
 

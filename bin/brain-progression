@@ -11,8 +11,8 @@ if (file_exists($autoloadPath1)) {
 }
 
 use function BrainGames\Cli\gettingName;
-use function BrainGames\Progression\progression;
+use function BrainGames\Progression\checkProgression;
 
 $name = gettingName();
-progression($name);	
+checkProgression($name);	
 

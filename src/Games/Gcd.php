@@ -12,6 +12,8 @@ use function BrainGames\Engine\checkAnswer;
 
 use const BrainGames\Engine\COUNT_ITERATION;
 
+const TASK = 'Find the greatest common divisor of given numbers.';
+
 //create random array
 function createRandArr()
 {
@@ -45,23 +47,21 @@ function findGcd(int $firstDigit, int $secondDigit)
     return max($commonDivisor);
 }
 
-function gcd(string $name)
+function checkGcd(string $name)
 {
-    define('TASK', 'Find the greatest common divisor of given numbers.');
-    line(TASK);
 
     $arrayOne = createRandArr();
     $arrayTwo = createRandArr();
     $counter = 0;
 
     for ($i = 0; $i < COUNT_ITERATION; $i++) {
+        $counter = $i;
+        $task = TASK;
         $taskForGame = "{$arrayOne[$i]} {$arrayTwo[$i]}";
-        askQuestion($taskForGame);
-        $answer = getUserResponse();
+        $answer = askQuestion($taskForGame, $task, $counter);
 
         $correctAnswer = findGcd($arrayOne[$i], $arrayTwo[$i]);
 
-        checkAnswer($answer, $correctAnswer, $name);
+        checkAnswer($answer, $correctAnswer, $name, $counter);
     }
-    congratulations($name);
 }

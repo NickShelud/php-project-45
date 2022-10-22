@@ -12,6 +12,8 @@ use function BrainGames\Engine\checkAnswer;
 
 use const BrainGames\Engine\COUNT_ITERATION;
 
+const TASK = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+
 function checkPrime(int $digit)
 {
     $counter = 0;
@@ -30,20 +32,18 @@ function checkPrime(int $digit)
     }
 }
 
-function prime(string $name)
+function getPrime(string $name)
 {
-    define('TASK', 'Answer "yes" if given number is prime. Otherwise answer "no".');
-    line(TASK);
 
     for ($i = 0; $i < COUNT_ITERATION; $i++) {
+        $counter = $i;
+        $task = TASK;
         $randDigit = rand(1, 100);
         $correctAnswer = checkPrime($randDigit);
 
         $taskForGame = "{$randDigit}";
-        askQuestion($taskForGame);
-        $answer = getUserResponse();
+        $answer = askQuestion($taskForGame, $task, $counter);
 
-        checkAnswer($answer, $correctAnswer, $name);
+        checkAnswer($answer, $correctAnswer, $name, $counter);
     }
-    congratulations($name);
 }

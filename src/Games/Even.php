@@ -13,6 +13,8 @@ use function BrainGames\Engine\checkAnswer;
 
 use const BrainGames\Engine\COUNT_ITERATION;
 
+const TASK = 'Answer "yes" if the number is even, otherwise answer "no".';
+
 //create random array
 function createRandArr()
 {
@@ -25,17 +27,15 @@ function createRandArr()
 
 function checkAnswers(string $name)
 {
-    define('TASK', 'Answer "yes" if the number is even, otherwise answer "no".');
-    line(TASK);
     $randArr = createRandArr();
     $correctAnswerArr = checkForParity($randArr);
 
     for ($i = 0; $i < COUNT_ITERATION; $i++) {
+        $counter = $i;
+        $task = TASK;
         $taskForGame = "{$randArr[$i]}";
-        askQuestion($taskForGame);
-        $answer = getUserResponse();
+        $answer = askQuestion($taskForGame, $task, $counter);
 
-        checkAnswer($answer, $correctAnswerArr[$i], $name);
+        checkAnswer($answer, $correctAnswerArr[$i], $name, $counter);
     }
-    congratulations($name);
 }

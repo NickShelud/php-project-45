@@ -12,6 +12,8 @@ use function BrainGames\Engine\checkAnswer;
 
 use const BrainGames\Engine\COUNT_ITERATION;
 
+const TASK = 'What number is missing in the progression?';
+
 function createRandProgression()
 {
     //create difference for arithmetic progression
@@ -41,22 +43,20 @@ function choiceRandDigit(array $randArray)
     return [$hiddenDigit, $randArray];
 }
 
-function progression(string $name)
+function checkProgression(string $name)
 {
-    define('TASK', 'What number is missing in the progression?');
-    line(TASK);
 
     for ($i = 0; $i < COUNT_ITERATION; $i++) {
+        $counter = $i;
+        $task = TASK;
         $arrRand = createRandProgression();
         $arr = choiceRandDigit($arrRand);
         $hiddenDigit = $arr[0];
         $arrayWhisProgression = implode(' ', $arr[1]);
 
         $taskForGame = "{$arrayWhisProgression}";
-        askQuestion($taskForGame);
-        $answer = getUserResponse();
+        $answer = askQuestion($taskForGame, $task, $counter);
 
-        checkAnswer($answer, $hiddenDigit, $name);
+        checkAnswer($answer, $hiddenDigit, $name, $counter);
     }
-    congratulations($name);
 }
