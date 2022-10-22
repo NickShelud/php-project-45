@@ -4,8 +4,6 @@ namespace BrainGames\Gcd;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\congratulations;
-use function BrainGames\Engine\printMessageWrongAnswer;
 use function BrainGames\Engine\askQuestion;
 use function BrainGames\Engine\getUserResponse;
 use function BrainGames\Engine\checkAnswer;

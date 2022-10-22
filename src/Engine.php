@@ -9,7 +9,7 @@ use function cli\prompt;
 const COUNT_ITERATION = 3;
 
 //question for user
-function askQuestion(string $taskForGame, $task, $counter)
+function askQuestion(string $taskForGame, string $task, int $counter)
 {
     if ($counter === 0) {
         line($task);
