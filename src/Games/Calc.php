@@ -55,6 +55,6 @@ function calculate(string $name)
                 $resultExpression = $arrayOne[$i] * $arrayTwo[$i];
                 break;
         }
-        run($taskForGame, $task, $resultExpression, $name, $counter);
+        run($taskForGame, $task, string $resultExpression, $name, $counter);
     }
 }
