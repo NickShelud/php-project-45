@@ -4,9 +4,7 @@ namespace BrainGames\Gcd;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\askQuestion;
-use function BrainGames\Engine\getUserResponse;
-use function BrainGames\Engine\checkAnswer;
+use function BrainGames\Engine\run;
 
 use const BrainGames\Engine\COUNT_ITERATION;
 
@@ -56,10 +54,9 @@ function checkGcd(string $name)
         $counter = $i;
         $task = TASK;
         $taskForGame = "{$arrayOne[$i]} {$arrayTwo[$i]}";
-        $answer = askQuestion($taskForGame, $task, $counter);
 
         $correctAnswer = findGcd($arrayOne[$i], $arrayTwo[$i]);
 
-        checkAnswer($answer, $correctAnswer, $name, $counter);
+        run($taskForGame, $task, $correctAnswer, $name, $counter);
     }
 }

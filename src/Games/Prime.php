@@ -4,9 +4,7 @@ namespace BrainGames\Prime;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\askQuestion;
-use function BrainGames\Engine\getUserResponse;
-use function BrainGames\Engine\checkAnswer;
+use function BrainGames\Engine\run;
 
 use const BrainGames\Engine\COUNT_ITERATION;
 
@@ -40,8 +38,7 @@ function getPrime(string $name)
         $correctAnswer = checkPrime($randDigit);
 
         $taskForGame = "{$randDigit}";
-        $answer = askQuestion($taskForGame, $task, $counter);
 
-        checkAnswer($answer, $correctAnswer, $name, $counter);
+        run($taskForGame, $task, $correctAnswer, $name, $counter);
     }
 }

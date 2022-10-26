@@ -4,9 +4,7 @@ namespace BrainGames\Calc;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\askQuestion;
-use function BrainGames\Engine\getUserResponse;
-use function BrainGames\Engine\checkAnswer;
+use function BrainGames\Engine\run;
 
 use const BrainGames\Engine\COUNT_ITERATION;
 
@@ -35,7 +33,6 @@ function choiceOperator()
 
 function calculate(string $name)
 {
-    //line(TASK);
 
     $arrayOne = createRandArr();
     $arrayTwo = createRandArr();
@@ -46,7 +43,6 @@ function calculate(string $name)
         $counter = $i;
         $task = TASK;
         $taskForGame = "{$arrayOne[$i]} {$arrayWithOperator[$i]} {$arrayTwo[$i]}";
-        $answer = askQuestion($taskForGame, $task, $counter);
 
         switch ($arrayWithOperator[$i]) {
             case '+':
@@ -59,6 +55,6 @@ function calculate(string $name)
                 $resultExpression = $arrayOne[$i] * $arrayTwo[$i];
                 break;
         }
-        checkAnswer($answer, (string) $resultExpression, $name, $counter);
+        run($taskForGame, $task, $resultExpression, $name, $counter);
     }
 }

@@ -4,9 +4,7 @@ namespace BrainGames\Progression;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\askQuestion;
-use function BrainGames\Engine\getUserResponse;
-use function BrainGames\Engine\checkAnswer;
+use function BrainGames\Engine\run;
 
 use const BrainGames\Engine\COUNT_ITERATION;
 
@@ -53,8 +51,7 @@ function checkProgression(string $name)
         $arrayWhisProgression = implode(' ', $arr[1]);
 
         $taskForGame = "{$arrayWhisProgression}";
-        $answer = askQuestion($taskForGame, $task, $counter);
 
-        checkAnswer($answer, $hiddenDigit, $name, $counter);
+        run($taskForGame, $task, $hiddenDigit, $name, $counter);
     }
 }
