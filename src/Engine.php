@@ -11,7 +11,7 @@ const COUNT_ITERATION = 3;
 function run(array $gameTask, string $task, array $arrayWithCorrectAnswer, string $name)
 {
     $counter = 0;
-    for ($i = 0; $i < 3; $i++) {
+    for ($i = 0; $i < COUNT_ITERATION; $i++) {
         if ($counter === 0) {
             line($task);
         }
@@ -19,7 +19,7 @@ function run(array $gameTask, string $task, array $arrayWithCorrectAnswer, strin
         $question = line("Question: {$gameTask[$i]}");
         $playerAnswer = prompt("Your answer");
 
-        if ($playerAnswer === $arrayWithCorrectAnswer[$i]) {
+        if ($playerAnswer === (string) $arrayWithCorrectAnswer[$i]) {
             line("Correct!");
             $counter += 1;
             if ($counter === 3) {
