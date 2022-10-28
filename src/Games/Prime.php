@@ -30,14 +30,15 @@ function checkPrime(int $digit)
 
 function getPrime(string $name)
 {
+    $gameTask = [];
+    $correctAnswer = [];
+    $task = TASK;
 
     for ($i = 0; $i < COUNT_ITERATION; $i++) {
-        $counter = $i;
-        $task = TASK;
         $randDigit = rand(1, 100);
         $correctAnswer[] = checkPrime($randDigit);
 
         $gameTask[] = "{$randDigit}";
     }
-    run($gameTask, $task, $correctAnswer, $name, $counter);
+    run($gameTask, $task, $correctAnswer, $name);
 }

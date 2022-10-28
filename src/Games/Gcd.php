@@ -48,14 +48,14 @@ function checkGcd(string $name)
 
     $arrayOne = createRandArr();
     $arrayTwo = createRandArr();
-    $counter = 0;
+    $correctAnswer = [];
+    $gameTask = [];
+    $task = TASK;
 
     for ($i = 0; $i < COUNT_ITERATION; $i++) {
-        $counter = $i;
-        $task = TASK;
         $gameTask[] = "{$arrayOne[$i]} {$arrayTwo[$i]}";
 
         $correctAnswer[] = findGcd($arrayOne[$i], $arrayTwo[$i]);
     }
-    run($gameTask, $task, $correctAnswer, $name, $counter);
+    run($gameTask, $task, $correctAnswer, $name);
 }

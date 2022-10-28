@@ -12,8 +12,9 @@ const TASK = 'What is the result of the expression?';
 
 function calculate(string $name)
 {
-
+    $gameTask = [];
     $resultExpression = [];
+    $task = TASK;
 
     for ($i = 0; $i < COUNT_ITERATION; $i++) {
         $argumentOne = rand(1, 100);
@@ -28,8 +29,6 @@ function calculate(string $name)
         };
 
         $operatorForTask = $operator();
-        $counter = $i;
-        $task = TASK;
         $gameTask[] = "{$argumentOne} {$operatorForTask} {$argumentTwo}";
 
         switch ($operatorForTask) {
@@ -44,5 +43,5 @@ function calculate(string $name)
                 break;
         }
     }
-    run($gameTask, $task, $resultExpression, $name, $counter);
+    run($gameTask, $task, $resultExpression, $name);
 }

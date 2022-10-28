@@ -19,7 +19,7 @@ function run(array $gameTask, string $task, array $arrayWithCorrectAnswer, strin
         $question = line("Question: {$gameTask[$i]}");
         $playerAnswer = prompt("Your answer");
 
-        if ((string) $playerAnswer === (string) $arrayWithCorrectAnswer[$i]) {
+        if ($playerAnswer === $arrayWithCorrectAnswer[$i]) {
             line("Correct!");
             $counter += 1;
             if ($counter === 3) {

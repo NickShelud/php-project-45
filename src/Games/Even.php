@@ -13,6 +13,8 @@ const TASK = 'Answer "yes" if the number is even, otherwise answer "no".';
 function checkAnswers(string $name)
 {
     $task = TASK;
+    $correctAnswerArr = [];
+    $gameTask = [];
 
     for ($i = 0; $i < COUNT_ITERATION; $i++) {
         $randDigit = rand(1, 100);
