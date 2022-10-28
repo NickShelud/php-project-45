@@ -53,10 +53,9 @@ function checkGcd(string $name)
     for ($i = 0; $i < COUNT_ITERATION; $i++) {
         $counter = $i;
         $task = TASK;
-        $taskForGame = "{$arrayOne[$i]} {$arrayTwo[$i]}";
+        $gameTask[] = "{$arrayOne[$i]} {$arrayTwo[$i]}";
 
-        $correctAnswer = findGcd($arrayOne[$i], $arrayTwo[$i]);
-
-        run($taskForGame, $task, $correctAnswer, $name, $counter);
+        $correctAnswer[] = findGcd($arrayOne[$i], $arrayTwo[$i]);
     }
+    run($gameTask, $task, $correctAnswer, $name, $counter);
 }

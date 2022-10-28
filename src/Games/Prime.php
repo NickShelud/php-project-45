@@ -35,10 +35,9 @@ function getPrime(string $name)
         $counter = $i;
         $task = TASK;
         $randDigit = rand(1, 100);
-        $correctAnswer = checkPrime($randDigit);
+        $correctAnswer[] = checkPrime($randDigit);
 
-        $taskForGame = "{$randDigit}";
-
-        run($taskForGame, $task, $correctAnswer, $name, $counter);
+        $gameTask[] = "{$randDigit}";
     }
+    run($gameTask, $task, $correctAnswer, $name, $counter);
 }

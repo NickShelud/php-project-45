@@ -41,17 +41,18 @@ function choiceRandDigit(array $randArray)
 
 function checkProgression(string $name)
 {
+        $hiddenDigit = [];
 
     for ($i = 0; $i < COUNT_ITERATION; $i++) {
         $counter = $i;
         $task = TASK;
         $arrRand = createRandProgression();
         $arr = choiceRandDigit($arrRand);
-        $hiddenDigit = $arr[0];
+
+        $hiddenDigit[] = $arr[0];
         $arrayWhisProgression = implode(' ', $arr[1]);
 
-        $taskForGame = "{$arrayWhisProgression}";
-
-        run($taskForGame, $task, $hiddenDigit, $name, $counter);
+        $gameTask[] = "{$arrayWhisProgression}";
     }
+    run($gameTask, $task, $hiddenDigit, $name, $counter);
 }
