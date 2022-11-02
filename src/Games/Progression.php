@@ -34,7 +34,7 @@ function checkProgression()
         $dataForGame = preparationData();
         $arrWithStartArr = $dataForGame['arr'];
         $hiddenDigit = [];
-        print_r($arrWithStartArr);
+        $gameTask = [];
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $startArr = $arrWithStartArr[$i];
@@ -45,6 +45,5 @@ function checkProgression()
         $startArr[$j] = '..';
         $gameTask[] = implode(' ', $startArr);
     }
-    print_r($hiddenDigit);
     run($gameTask, TASK, $hiddenDigit);
 }
