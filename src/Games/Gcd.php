@@ -39,6 +39,8 @@ function checkGcd()
 
     for ($j = 0; $j < ROUNDS_COUNT; $j++) {
         $commonDivisor = [];
+        $firstDigitDivider = [];
+        $secondDigitDivider = [];
         for ($i = 1; $i <= $firstDigit[$j]; $i++) {
             //firstDigitDivider contains all the divisors of a number
             if ($firstDigit[$j] % $i === 0) {
