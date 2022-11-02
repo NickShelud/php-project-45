@@ -6,56 +6,53 @@ use function cli\line;
 use function cli\prompt;
 use function BrainGames\Engine\run;
 
-use const BrainGames\Engine\COUNT_ITERATION;
+use const BrainGames\Engine\ROUNDS_COUNT;
 
 const TASK = 'Find the greatest common divisor of given numbers.';
 
-//create random array
-function createRandArr()
+function preparationData()
 {
-    $arr = array();
-    for ($i = 0; $i < 3; $i++) {
-        $arr[] = rand(1, 100);
-    };
-    return $arr;
-}
+    $accamulate = [];
 
-function findGcd(int $firstDigit, int $secondDigit)
-{
-    $firstDigitDivider = array();
-    $secondDigitDivider = array();
-    for ($i = 1; $i <= $firstDigit; $i++) {
-        //firstDigitDivider contains all the divisors of a number
-        if ($firstDigit % $i === 0) {
-            $firstDigitDivider[] = $i;
-        }
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
+        $firstDigit = rand(1, 100);
+        $accamulate['firstDigit'][] = $firstDigit;
+
+        $secondDigit = rand(1, 100);
+        $accamulate['secondDigit'][] = $secondDigit;
+
+        $accamulate['task'][] = "{$firstDigit} {$secondDigit}";
     }
 
-    for ($i = 1; $i <= $secondDigit; $i++) {
-        //secondDigitDivider contains all the divisors of a number
-        if ($secondDigit % $i === 0) {
-            $secondDigitDivider[] = $i;
-        }
-    }
-
-    $commonDivisor = array_intersect($firstDigitDivider, $secondDigitDivider);
-
-    return max($commonDivisor);
+    return $accamulate;
 }
 
-function checkGcd(string $name)
+function checkGcd()
 {
-
-    $arrayOne = createRandArr();
-    $arrayTwo = createRandArr();
+    $dataForGame = preparationData();
+    $firstDigit = $dataForGame['firstDigit'];
+    $secondDigit = $dataForGame['secondDigit'];
+    $gameTask = $dataForGame['task'];
     $correctAnswer = [];
-    $gameTask = [];
-    $task = TASK;
+    $firstDigitDivider = [];
+    $secondDigitDivider = [];
 
-    for ($i = 0; $i < COUNT_ITERATION; $i++) {
-        $gameTask[] = "{$arrayOne[$i]} {$arrayTwo[$i]}";
+    for ($j = 0; $j < ROUNDS_COUNT; $j++) {
+        for ($i = 1; $i <= $firstDigit[$j]; $i++) {
+            //firstDigitDivider contains all the divisors of a number
+            if ($firstDigit[$j] % $i === 0) {
+                $firstDigitDivider[] = $i;
+            }
+        }
 
-        $correctAnswer[] = findGcd($arrayOne[$i], $arrayTwo[$i]);
+        for ($i = 1; $i <= $secondDigit[$j]; $i++) {
+            //secondDigitDivider contains all the divisors of a number
+            if ($secondDigit[$j] % $i === 0) {
+                $secondDigitDivider[] = $i;
+            }
+        }
+        $commonDivisor = array_intersect($firstDigitDivider, $secondDigitDivider);
+        $correctAnswer[] = max($commonDivisor);
     }
-    run($gameTask, $task, $correctAnswer, $name);
+    run($gameTask, TASK, $correctAnswer);
 }

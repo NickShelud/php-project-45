@@ -6,31 +6,35 @@ use function cli\line;
 use function cli\prompt;
 use function BrainGames\Engine\run;
 
-use const BrainGames\Engine\COUNT_ITERATION;
+use const BrainGames\Engine\ROUNDS_COUNT;
 
 const TASK = 'Answer "yes" if the number is even, otherwise answer "no".';
 
-function checkAnswers(string $name)
+function preparationData()
 {
-    $task = TASK;
-    $correctAnswerArr = [];
-    $gameTask = [];
-
-    for ($i = 0; $i < COUNT_ITERATION; $i++) {
+    $accamulator = [];
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $randDigit = rand(1, 100);
+        $accamulator['digit'][] = $randDigit;
+        $accamulator['task'][] = "{$randDigit}";
+    }
+    return $accamulator;
+}
 
-        $correctAnswers = function ($randDigit) {
-            if ((int) $randDigit % 2 == 0) {
-                $correctAnswer = 'yes';
-            } else {
-                $correctAnswer = 'no';
-            }
-            return $correctAnswer;
-        };
+function checkAnswers()
+{
+    $dataForGame = preparationData();
+    $correctAnswer = [];
+    $gameTask = $dataForGame['task'];
+    $randDigit = $dataForGame['digit'];
 
-        $correctAnswerArr[] = $correctAnswers($randDigit);
-        $gameTask[] = "{$randDigit}";
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
+        if ((int) $randDigit[$i] % 2 === 0) {
+            $correctAnswer[] = 'yes';
+        } else {
+            $correctAnswer[] = 'no';
+        }
     }
 
-    run($gameTask, $task, $correctAnswerArr, $name);
+    run($gameTask, TASK, $correctAnswer);
 }

@@ -6,39 +6,43 @@ use function cli\line;
 use function cli\prompt;
 use function BrainGames\Engine\run;
 
-use const BrainGames\Engine\COUNT_ITERATION;
+use const BrainGames\Engine\ROUNDS_COUNT;
 
 const TASK = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-function checkPrime(int $digit)
+function preparationData()
 {
-    $counter = 0;
-    for ($i = 1; $i <= $digit; $i++) {
-        if ($digit % $i === 0) {
-            $counter++;
-            if ($counter > 2) {
-                return 'no';
-            }
-        }
+    $accamulate = [];
+
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
+        $randDigit = rand(1, 100);
+        $accamulate['digit'][] = $randDigit;
+        $accamulate['task'][] = "{$randDigit}";
     }
-    if ($counter === 2) {
-        return 'yes';
-    } else {
-        return 'no';
-    }
+    return $accamulate;
 }
 
-function getPrime(string $name)
+function checkPrime()
 {
-    $gameTask = [];
+    $dataForGame = preparationData();
     $correctAnswer = [];
-    $task = TASK;
+    $gameTask = $dataForGame['task'];
+    $randDigit = $dataForGame['digit'];
 
-    for ($i = 0; $i < COUNT_ITERATION; $i++) {
-        $randDigit = rand(1, 100);
-        $correctAnswer[] = checkPrime($randDigit);
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
+        $counter = 0;
 
-        $gameTask[] = "{$randDigit}";
+        for ($j = 1; $j <= $randDigit[$i]; $j++) {
+            if ($randDigit[$i] % $j === 0) {
+                $counter += 1;
+            }
+        }
+
+        if ($counter === 2) {
+            $correctAnswer[] = 'yes';
+        } else {
+            $correctAnswer[] = 'no';
+        }
     }
-    run($gameTask, $task, $correctAnswer, $name);
+    run($gameTask, TASK, $correctAnswer);
 }

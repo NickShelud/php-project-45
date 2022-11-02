@@ -6,16 +6,24 @@ use function cli\line;
 use function cli\prompt;
 
 //number of game iterations
-const COUNT_ITERATION = 3;
+const ROUNDS_COUNT = 3;
 
-function run(array $gameTask, string $task, array $arrayWithCorrectAnswer, string $name)
+function gettingName()
+{
+    line('Welcome to the Brain Games!');
+    $name = prompt('May I have your name?');
+    line("Hello, %s!", $name);
+    return $name;
+}
+
+function run(array $gameTask, string $task, array $arrayWithCorrectAnswer)
 {
     $counter = 0;
-    for ($i = 0; $i < COUNT_ITERATION; $i++) {
-        if ($counter === 0) {
-            line($task);
-        }
 
+    $name = gettingName();
+    line($task);
+
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $question = line("Question: {$gameTask[$i]}");
         $playerAnswer = prompt("Your answer");
 

@@ -6,53 +6,43 @@ use function cli\line;
 use function cli\prompt;
 use function BrainGames\Engine\run;
 
-use const BrainGames\Engine\COUNT_ITERATION;
+use const BrainGames\Engine\ROUNDS_COUNT;
 
 const TASK = 'What number is missing in the progression?';
 
-function createRandProgression()
+function preparationData()
 {
-    //create difference for arithmetic progression
-    $differenceProgression = rand(1, 15);
+    $accamulate = [];
 
-    //create first digit in arithmetic progression
-    $startDigit = rand(0, 20);
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
+        $differenceProgression = rand(1, 15);
+        $startDigit = rand(0, 20);
 
-    $countDigitInArr = rand(5, 10);
-    $progressionArr = [$startDigit];
+        $countDigitInArr = rand(5, 10);
+        $progressionArr = [$startDigit];
 
-    for ($i = 1; $i <= $countDigitInArr; $i++) {
-        $progressionArr[] = $progressionArr[$i - 1] + $differenceProgression;
+        for ($j = 1; $j <= $countDigitInArr; $j++) {
+            $progressionArr[] = $progressionArr[$j - 1] + $differenceProgression;
+        }
+        $accamulate['arr'][] = $progressionArr;
     }
-
-    return $progressionArr;
+    return $accamulate;
 }
 
-function choiceRandDigit(array $randArray)
+function checkProgression()
 {
-    $count = count($randArray);
-    $randIndex = rand(0, $count - 1);
-
-    $hiddenDigit = $randArray[$randIndex];
-    $randArray[$randIndex] = '..';
-
-    return [$hiddenDigit, $randArray];
-}
-
-function checkProgression(string $name)
-{
-        $gameTask = [];
+        $dataForGame = preparationData();
+        $arrWithStartArr = $dataForGame['arr'];
         $hiddenDigit = [];
-        $task = TASK;
 
-    for ($i = 0; $i < COUNT_ITERATION; $i++) {
-        $arrRand = createRandProgression();
-        $arr = choiceRandDigit($arrRand);
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
+        $startArr = $arrWithStartArr[$i];
 
-        $hiddenDigit[] = $arr[0];
-        $arrayWhisProgression = implode(' ', $arr[1]);
-
-        $gameTask[] = "{$arrayWhisProgression}";
+        //rand Index
+        $i = rand(1, count($startArr) - 1);
+        $hiddenDigit[] = $startArr[$i];
+        $startArr[$i] = '..';
+        $gameTask[] = implode(' ', $startArr);
     }
-    run($gameTask, $task, $hiddenDigit, $name);
+    run($gameTask, TASK, $hiddenDigit);
 }
