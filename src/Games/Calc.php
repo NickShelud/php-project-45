@@ -21,17 +21,8 @@ function preparationData()
         $argumentTwo = rand(1, 100);
         $accamulator['secondArr'][] = $argumentTwo;
 
-        $operator = function () {
-            $operators = ['+', '-', '*'];
+        $operatorForTask = array_rand(['+' => '+', '-' => '-', '*' => '*'], 1);
 
-            //rand Digit
-            $i = rand(0, 2);
-            $arrayWithOperator = $operators[$i];
-
-            return $arrayWithOperator;
-        };
-
-        $operatorForTask = $operator();
         $accamulator['operator'][] = $operatorForTask;
 
         $accamulator['task'][] = "{$argumentOne} {$operatorForTask} {$argumentTwo}";
