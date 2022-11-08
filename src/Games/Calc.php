@@ -38,20 +38,21 @@ function calculate()
     $argumentTwo = $dataForGame['secondArr'];
     $operatorForTask = $dataForGame['operator'];
     $gameTask = $dataForGame['task'];
-    $resultExpression = [];
+    $questionsAndAnswers = [];
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         switch ($operatorForTask[$i]) {
             case '+':
-                $resultExpression[] = $argumentOne[$i] + $argumentTwo[$i];
+                $questionsAndAnswers[$gameTask[$i]] = $argumentOne[$i] + $argumentTwo[$i];
                 break;
             case '-':
-                $resultExpression[] = $argumentOne[$i] - $argumentTwo[$i];
+                $questionsAndAnswers[$gameTask[$i]] = $argumentOne[$i] - $argumentTwo[$i];
                 break;
             case '*':
-                $resultExpression[] = $argumentOne[$i] * $argumentTwo[$i];
+                $questionsAndAnswers[$gameTask[$i]] = $argumentOne[$i] * $argumentTwo[$i];
                 break;
         }
     }
-    run($gameTask, TASK, $resultExpression);
+
+    run(TASK, $questionsAndAnswers);
 }

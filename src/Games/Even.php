@@ -27,14 +27,15 @@ function checkAnswers()
     $correctAnswer = [];
     $gameTask = $dataForGame['task'];
     $randDigit = $dataForGame['digit'];
+    $questionsAndAnswers = [];
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         if ((int) $randDigit[$i] % 2 === 0) {
-            $correctAnswer[] = 'yes';
+            $questionsAndAnswers[$gameTask[$i]] = 'yes';
         } else {
-            $correctAnswer[] = 'no';
+            $questionsAndAnswers[$gameTask[$i]] = 'no';
         }
     }
 
-    run($gameTask, TASK, $correctAnswer);
+    run(TASK, $questionsAndAnswers);
 }

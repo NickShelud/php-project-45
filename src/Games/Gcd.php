@@ -36,6 +36,7 @@ function checkGcd()
     $correctAnswer = [];
     $firstDigitDivider = [];
     $secondDigitDivider = [];
+    $questionsAndAnswers = [];
 
     for ($j = 0; $j < ROUNDS_COUNT; $j++) {
         $commonDivisor = [];
@@ -55,7 +56,9 @@ function checkGcd()
             }
         }
         $commonDivisor = array_intersect($firstDigitDivider, $secondDigitDivider);
-        $correctAnswer[] = max($commonDivisor);
+
+        $questionsAndAnswers[$gameTask[$j]] = max($commonDivisor);
     }
-    run($gameTask, TASK, $correctAnswer);
+
+    run(TASK, $questionsAndAnswers);
 }

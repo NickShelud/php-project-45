@@ -28,6 +28,7 @@ function checkPrime()
     $correctAnswer = [];
     $gameTask = $dataForGame['task'];
     $randDigit = $dataForGame['digit'];
+    $questionsAndAnswers = [];
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $counter = 0;
@@ -39,10 +40,11 @@ function checkPrime()
         }
 
         if ($counter === 2) {
-            $correctAnswer[] = 'yes';
+            $questionsAndAnswers[$gameTask[$i]] = 'yes';
         } else {
-            $correctAnswer[] = 'no';
+            $questionsAndAnswers[$gameTask[$i]] = 'no';
         }
     }
-    run($gameTask, TASK, $correctAnswer);
+
+    run(TASK, $questionsAndAnswers);
 }

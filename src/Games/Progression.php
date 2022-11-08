@@ -35,15 +35,19 @@ function checkProgression()
         $arrWithStartArr = $dataForGame['arr'];
         $hiddenDigit = [];
         $gameTask = [];
+        $questionsAndAnswers = [];
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $startArr = $arrWithStartArr[$i];
 
         //rand Index
-        $j = rand(1, count($startArr) - 1);
-        $hiddenDigit[] = $startArr[$j];
-        $startArr[$j] = '..';
-        $gameTask[] = implode(' ', $startArr);
+        $iRandIndex = rand(1, count($startArr) - 1);
+        $hiddenDigit = $startArr[$iRandIndex];
+        $startArr[$iRandIndex] = '..';
+        $gameTask = implode(' ', $startArr);
+
+        $questionsAndAnswers[$gameTask] = $hiddenDigit;
     }
-    run($gameTask, TASK, $hiddenDigit);
+
+    run(TASK, $questionsAndAnswers);
 }
