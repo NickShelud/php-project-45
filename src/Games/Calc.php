@@ -4,36 +4,36 @@ namespace BrainGames\Calc;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\run;
+use function BrainGames\Engine\gameLounch;
 
 use const BrainGames\Engine\ROUNDS_COUNT;
 
 const TASK = 'What is the result of the expression?';
 
-function preparationData()
+function run()
 {
     $gameTask = [];
-    $accamulator = [];
+    $gameData = [];
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $argumentOne = rand(1, 100);
-        $accamulator['firstArr'][] = $argumentOne;
+        $gameData['firstArr'][] = $argumentOne;
 
         $argumentTwo = rand(1, 100);
-        $accamulator['secondArr'][] = $argumentTwo;
+        $gameData['secondArr'][] = $argumentTwo;
 
-        $operatorForTask = array_rand(['+' => '+', '-' => '-', '*' => '*'], 1);
+        $operation = ['+', '-', '*'];
+        $operatorForTask = $operation[array_rand($operation, 1)];
 
-        $accamulator['operator'][] = $operatorForTask;
+        $gameData['operator'][] = $operatorForTask;
 
-        $accamulator['task'][] = "{$argumentOne} {$operatorForTask} {$argumentTwo}";
+        $gameData['task'][] = "{$argumentOne} {$operatorForTask} {$argumentTwo}";
     }
-    return $accamulator;
+    
+    gameLounch(TASK, calculate($gameData));
 }
 
-function calculate()
+function calculate($dataForGame)
 {
-    $dataForGame = preparationData();
-
     $argumentOne = $dataForGame['firstArr'];
     $argumentTwo = $dataForGame['secondArr'];
     $operatorForTask = $dataForGame['operator'];
@@ -53,6 +53,6 @@ function calculate()
                 break;
         }
     }
-
-    run(TASK, $questionsAndAnswers);
+    
+    return $questionsAndAnswers;
 }

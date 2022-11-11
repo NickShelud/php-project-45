@@ -4,36 +4,34 @@ namespace BrainGames\Gcd;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\run;
+use function BrainGames\Engine\gameLounch;
 
 use const BrainGames\Engine\ROUNDS_COUNT;
 
 const TASK = 'Find the greatest common divisor of given numbers.';
 
-function preparationData()
+function run()
 {
-    $accamulate = [];
+    $gameData = [];
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $firstDigit = rand(1, 100);
-        $accamulate['firstDigit'][] = $firstDigit;
+        $gameData['firstDigit'][] = $firstDigit;
 
         $secondDigit = rand(1, 100);
-        $accamulate['secondDigit'][] = $secondDigit;
+        $gameData['secondDigit'][] = $secondDigit;
 
-        $accamulate['task'][] = "{$firstDigit} {$secondDigit}";
+        $gameData['task'][] = "{$firstDigit} {$secondDigit}";
     }
 
-    return $accamulate;
+    gameLounch(TASK, checkGcd($gameData));
 }
 
-function checkGcd()
+function checkGcd($dataForGame)
 {
-    $dataForGame = preparationData();
     $firstDigit = $dataForGame['firstDigit'];
     $secondDigit = $dataForGame['secondDigit'];
     $gameTask = $dataForGame['task'];
-    $correctAnswer = [];
     $firstDigitDivider = [];
     $secondDigitDivider = [];
     $questionsAndAnswers = [];
@@ -60,5 +58,5 @@ function checkGcd()
         $questionsAndAnswers[$gameTask[$j]] = max($commonDivisor);
     }
 
-    run(TASK, $questionsAndAnswers);
+    return $questionsAndAnswers;
 }

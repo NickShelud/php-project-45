@@ -8,7 +8,7 @@ use function cli\prompt;
 //number of game iterations
 const ROUNDS_COUNT = 3;
 
-function run(string $task, array $questionsAndAnswers)
+function gameLounch(string $task, array $questionsAndAnswers)
 {
     line('Welcome to the Brain Games!');
     $name = prompt('May I have your name?');

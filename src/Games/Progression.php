@@ -4,15 +4,15 @@ namespace BrainGames\Progression;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\run;
+use function BrainGames\Engine\gameLounch;
 
 use const BrainGames\Engine\ROUNDS_COUNT;
 
 const TASK = 'What number is missing in the progression?';
 
-function preparationData()
+function run()
 {
-    $accamulate = [];
+    $gameData = [];
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $differenceProgression = rand(1, 15);
@@ -24,14 +24,14 @@ function preparationData()
         for ($j = 1; $j <= $countDigitInArr; $j++) {
             $progressionArr[] = $progressionArr[$j - 1] + $differenceProgression;
         }
-        $accamulate['arr'][] = $progressionArr;
+        $gameData['arr'][] = $progressionArr;
     }
-    return $accamulate;
+    
+    gameLounch(TASK, checkProgression($gameData));
 }
 
-function checkProgression()
+function checkProgression($dataForGame)
 {
-        $dataForGame = preparationData();
         $arrWithStartArr = $dataForGame['arr'];
         $hiddenDigit = [];
         $gameTask = [];
@@ -49,5 +49,5 @@ function checkProgression()
         $questionsAndAnswers[$gameTask] = $hiddenDigit;
     }
 
-    run(TASK, $questionsAndAnswers);
+    return $questionsAndAnswers;
 }

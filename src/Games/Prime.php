@@ -4,27 +4,27 @@ namespace BrainGames\Prime;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\run;
+use function BrainGames\Engine\gameLounch;
 
 use const BrainGames\Engine\ROUNDS_COUNT;
 
 const TASK = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-function preparationData()
+function run()
 {
-    $accamulate = [];
+    $gameData = [];
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $randDigit = rand(1, 100);
-        $accamulate['digit'][] = $randDigit;
-        $accamulate['task'][] = "{$randDigit}";
+        $gameData['digit'][] = $randDigit;
+        $gameData['task'][] = "{$randDigit}";
     }
-    return $accamulate;
+    
+    gameLounch(TASK, checkPrime($gameData));
 }
 
-function checkPrime()
+function checkPrime($dataForGame)
 {
-    $dataForGame = preparationData();
     $correctAnswer = [];
     $gameTask = $dataForGame['task'];
     $randDigit = $dataForGame['digit'];
@@ -46,5 +46,5 @@ function checkPrime()
         }
     }
 
-    run(TASK, $questionsAndAnswers);
+    return $questionsAndAnswers;
 }
