@@ -19,7 +19,7 @@ function run()
         $gameData['digit'][] = $randDigit;
         $gameData['task'][] = "{$randDigit}";
     }
-    
+
     gameLounch(TASK, checkPrime($gameData));
 }
 

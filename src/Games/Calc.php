@@ -28,7 +28,7 @@ function run()
 
         $gameData['task'][] = "{$argumentOne} {$operatorForTask} {$argumentTwo}";
     }
-    
+
     gameLounch(TASK, calculate($gameData));
 }
 
@@ -53,6 +53,6 @@ function calculate($dataForGame)
                 break;
         }
     }
-    
+
     return $questionsAndAnswers;
 }
