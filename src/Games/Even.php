@@ -21,7 +21,7 @@ function run()
     gameLounch(TASK, isEven($gameData));
 }
 
-function isEven($dataForGame)
+function isEven(array $dataForGame)
 {
     $correctAnswer = [];
     $randDigit = $dataForGame['digit'];

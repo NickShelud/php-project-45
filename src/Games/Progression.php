@@ -30,7 +30,7 @@ function run()
     gameLounch(TASK, checkProgression($gameData));
 }
 
-function checkProgression($dataForGame)
+function checkProgression(array $dataForGame)
 {
         $arrWithStartArr = $dataForGame['arr'];
         $hiddenDigit = [];

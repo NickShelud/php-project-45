@@ -23,7 +23,7 @@ function run()
     gameLounch(TASK, checkPrime($gameData));
 }
 
-function checkPrime($dataForGame)
+function checkPrime(array $dataForGame)
 {
     $correctAnswer = [];
     $gameTask = $dataForGame['task'];

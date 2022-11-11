@@ -27,7 +27,7 @@ function run()
     gameLounch(TASK, checkGcd($gameData));
 }
 
-function checkGcd($dataForGame)
+function checkGcd(array $dataForGame)
 {
     $firstDigit = $dataForGame['firstDigit'];
     $secondDigit = $dataForGame['secondDigit'];

@@ -32,7 +32,7 @@ function run()
     gameLounch(TASK, calculate($gameData));
 }
 
-function calculate($dataForGame)
+function calculate(array $dataForGame)
 {
     $argumentOne = $dataForGame['firstArr'];
     $argumentTwo = $dataForGame['secondArr'];
