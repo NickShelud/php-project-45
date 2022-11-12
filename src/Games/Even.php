@@ -23,7 +23,7 @@ function isEven()
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $randDigit = rand(1, 100);
 
-        if ((int) $randDigit % 2 === 0) {
+        if ($randDigit % 2 === 0) {
             $questionsAndAnswers["{$randDigit}"] = 'yes';
         } else {
             $questionsAndAnswers["{$randDigit}"] = 'no';
