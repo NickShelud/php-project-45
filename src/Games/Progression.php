@@ -12,7 +12,14 @@ const TASK = 'What number is missing in the progression?';
 
 function run()
 {
-    $gameData = [];
+    gameLounch(TASK, getProgression());
+}
+
+function getProgression()
+{
+    $hiddenDigit = [];
+    $gameTask = [];
+    $questionsAndAnswers = [];
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $differenceProgression = rand(1, 15);
@@ -24,27 +31,11 @@ function run()
         for ($j = 1; $j <= $countDigitInArr; $j++) {
             $progressionArr[] = $progressionArr[$j - 1] + $differenceProgression;
         }
-        $gameData['arr'][] = $progressionArr;
-    }
 
-    gameLounch(TASK, checkProgression($gameData));
-}
-
-function checkProgression(array $dataForGame)
-{
-        $arrWithStartArr = $dataForGame['arr'];
-        $hiddenDigit = [];
-        $gameTask = [];
-        $questionsAndAnswers = [];
-
-    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
-        $startArr = $arrWithStartArr[$i];
-
-        //rand Index
-        $iRandIndex = rand(1, count($startArr) - 1);
-        $hiddenDigit = $startArr[$iRandIndex];
-        $startArr[$iRandIndex] = '..';
-        $gameTask = implode(' ', $startArr);
+        $iRandIndex = rand(1, count($progressionArr) - 1);
+        $hiddenDigit = $progressionArr[$iRandIndex];
+        $progressionArr[$iRandIndex] = '..';
+        $gameTask = implode(' ', $progressionArr);
 
         $questionsAndAnswers[$gameTask] = $hiddenDigit;
     }

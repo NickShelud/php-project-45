@@ -12,50 +12,38 @@ const TASK = 'Find the greatest common divisor of given numbers.';
 
 function run()
 {
-    $gameData = [];
-
-    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
-        $firstDigit = rand(1, 100);
-        $gameData['firstDigit'][] = $firstDigit;
-
-        $secondDigit = rand(1, 100);
-        $gameData['secondDigit'][] = $secondDigit;
-
-        $gameData['task'][] = "{$firstDigit} {$secondDigit}";
-    }
-
-    gameLounch(TASK, checkGcd($gameData));
+    gameLounch(TASK, getGcd());
 }
 
-function checkGcd(array $dataForGame)
+function getGcd()
 {
-    $firstDigit = $dataForGame['firstDigit'];
-    $secondDigit = $dataForGame['secondDigit'];
-    $gameTask = $dataForGame['task'];
     $firstDigitDivider = [];
     $secondDigitDivider = [];
     $questionsAndAnswers = [];
 
     for ($j = 0; $j < ROUNDS_COUNT; $j++) {
+        $firstDigit = rand(1, 100);
+        $secondDigit = rand(1, 100);
+
         $commonDivisor = [];
         $firstDigitDivider = [];
         $secondDigitDivider = [];
-        for ($i = 1; $i <= $firstDigit[$j]; $i++) {
+        $smallestDigit = $firstDigit > $secondDigit ? $secondDigit : $firstDigit;
+
+        for ($i = 1; $i <= $smallestDigit; $i++) {
             //firstDigitDivider contains all the divisors of a number
-            if ($firstDigit[$j] % $i === 0) {
+            if ($firstDigit % $i === 0) {
                 $firstDigitDivider[] = $i;
             }
-        }
 
-        for ($i = 1; $i <= $secondDigit[$j]; $i++) {
-            //secondDigitDivider contains all the divisors of a number
-            if ($secondDigit[$j] % $i === 0) {
+            if ($secondDigit % $i === 0) {
                 $secondDigitDivider[] = $i;
             }
         }
+
         $commonDivisor = array_intersect($firstDigitDivider, $secondDigitDivider);
 
-        $questionsAndAnswers[$gameTask[$j]] = max($commonDivisor);
+        $questionsAndAnswers["{$firstDigit} {$secondDigit}"] = max($commonDivisor);
     }
 
     return $questionsAndAnswers;

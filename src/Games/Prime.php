@@ -12,37 +12,27 @@ const TASK = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 function run()
 {
-    $gameData = [];
-
-    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
-        $randDigit = rand(1, 100);
-        $gameData['digit'][] = $randDigit;
-        $gameData['task'][] = "{$randDigit}";
-    }
-
-    gameLounch(TASK, checkPrime($gameData));
+    gameLounch(TASK, isPrime());
 }
 
-function checkPrime(array $dataForGame)
+function isPrime()
 {
-    $correctAnswer = [];
-    $gameTask = $dataForGame['task'];
-    $randDigit = $dataForGame['digit'];
     $questionsAndAnswers = [];
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $counter = 0;
+        $randDigit = rand(1, 100);
 
-        for ($j = 1; $j <= $randDigit[$i]; $j++) {
-            if ($randDigit[$i] % $j === 0) {
+        for ($j = 1; $j <= $randDigit; $j++) {
+            if ($randDigit % $j === 0) {
                 $counter += 1;
             }
         }
 
         if ($counter === 2) {
-            $questionsAndAnswers[$gameTask[$i]] = 'yes';
+            $questionsAndAnswers["{$randDigit}"] = 'yes';
         } else {
-            $questionsAndAnswers[$gameTask[$i]] = 'no';
+            $questionsAndAnswers["{$randDigit}"] = 'no';
         }
     }
 
