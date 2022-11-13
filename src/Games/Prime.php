@@ -16,9 +16,6 @@ function run()
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $randDigit = rand(1, 100);
-        $gameData['digit'][] = $randDigit;
-        $gameData['task'][] = "{$randDigit}";
-
         $questionsAndAnswers[$randDigit] = checkPrime($randDigit) === true ? 'yes' : 'no';
     }
     gameLounch(TASK, $questionsAndAnswers);
