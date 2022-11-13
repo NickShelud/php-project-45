@@ -23,7 +23,5 @@ function run()
 
 function isEven(int $digit)
 {
-    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         return $digit % 2 === 0 ? true : false;
-    }
 }
