@@ -12,23 +12,18 @@ const TASK = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 function run()
 {
-    gameLounch(TASK, isEven());
-}
-
-function isEven()
-{
-    $correctAnswer = [];
     $questionsAndAnswers = [];
-
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $randDigit = rand(1, 100);
-
-        if ($randDigit % 2 === 0) {
-            $questionsAndAnswers["{$randDigit}"] = 'yes';
-        } else {
-            $questionsAndAnswers["{$randDigit}"] = 'no';
-        }
+        $questionsAndAnswers["{$randDigit}"] = true === isEven($randDigit) ? 'yes' : 'no';
     }
 
-    return $questionsAndAnswers;
+    gameLounch(TASK, $questionsAndAnswers);
+}
+
+function isEven(int $digit)
+{
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
+        return $digit % 2 === 0 ? true : false;
+    }
 }

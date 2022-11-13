@@ -12,31 +12,43 @@ const TASK = 'What is the result of the expression?';
 
 function run()
 {
-    $operation = ['+', '-', '*'];
-    gameLounch(TASK, calculate($operation));
+    $gameTask = [];
+    $gameData = [];
+    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
+        $argumentOne = rand(1, 100);
+        $gameData['firstArr'][] = $argumentOne;
+
+        $argumentTwo = rand(1, 100);
+        $gameData['secondArr'][] = $argumentTwo;
+
+        $operation = ['+', '-', '*'];
+        $operatorForTask = $operation[array_rand($operation)];
+
+        $gameData['operator'][] = $operatorForTask;
+
+        $gameData['task'][] = "{$argumentOne} {$operatorForTask} {$argumentTwo}";
+    }
+    gameLounch(TASK, calculate($gameData));
 }
 
-function calculate(array $operation)
+function calculate(array $dataForGame)
 {
+    $argumentOne = $dataForGame['firstArr'];
+    $argumentTwo = $dataForGame['secondArr'];
+    $operatorForTask = $dataForGame['operator'];
+    $gameTask = $dataForGame['task'];
     $questionsAndAnswers = [];
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
-        $operatorForTask = $operation[array_rand($operation, 1)];
-
-        $argumentOne = rand(1, 100);
-        $argumentTwo = rand(1, 100);
-
-        $gameTask = "{$argumentOne} {$operatorForTask} {$argumentTwo}";
-
-        switch ($operatorForTask) {
+        switch ($operatorForTask[$i]) {
             case '+':
-                $questionsAndAnswers[$gameTask] = $argumentOne + $argumentTwo;
+                $questionsAndAnswers[$gameTask[$i]] = $argumentOne[$i] + $argumentTwo[$i];
                 break;
             case '-':
-                $questionsAndAnswers[$gameTask] = $argumentOne - $argumentTwo;
+                $questionsAndAnswers[$gameTask[$i]] = $argumentOne[$i] - $argumentTwo[$i];
                 break;
             case '*':
-                $questionsAndAnswers[$gameTask] = $argumentOne * $argumentTwo;
+                $questionsAndAnswers[$gameTask[$i]] = $argumentOne[$i] * $argumentTwo[$i];
                 break;
         }
     }
