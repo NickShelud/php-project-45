@@ -4,7 +4,7 @@ namespace BrainGames\Prime;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\gameLounch;
+use function BrainGames\Engine\launchGame;
 
 use const BrainGames\Engine\ROUNDS_COUNT;
 
@@ -18,7 +18,7 @@ function run()
         $randDigit = rand(1, 100);
         $questionsAndAnswers[$randDigit] = checkPrime($randDigit) === true ? 'yes' : 'no';
     }
-    gameLounch(TASK, $questionsAndAnswers);
+    launchGame(TASK, $questionsAndAnswers);
 }
 
 function checkPrime(int $digit)

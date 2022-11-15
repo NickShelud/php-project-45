@@ -4,7 +4,7 @@ namespace BrainGames\Gcd;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\gameLounch;
+use function BrainGames\Engine\launchGame;
 
 use const BrainGames\Engine\ROUNDS_COUNT;
 
@@ -24,7 +24,7 @@ function run()
         $gameData['task'][] = "{$firstDigit} {$secondDigit}";
     }
 
-    gameLounch(TASK, getGcd($gameData));
+    launchGame(TASK, getGcd($gameData));
 }
 
 function getGcd(array $dataForGame)

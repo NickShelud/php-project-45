@@ -4,7 +4,7 @@ namespace BrainGames\Calc;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\gameLounch;
+use function BrainGames\Engine\launchGame;
 
 use const BrainGames\Engine\ROUNDS_COUNT;
 
@@ -28,7 +28,7 @@ function run()
 
         $gameData['task'][] = "{$argumentOne} {$operatorForTask} {$argumentTwo}";
     }
-    gameLounch(TASK, calculate($gameData));
+    launchGame(TASK, calculate($gameData));
 }
 
 function calculate(array $dataForGame)

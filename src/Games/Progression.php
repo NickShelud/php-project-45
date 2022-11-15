@@ -4,7 +4,7 @@ namespace BrainGames\Progression;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\gameLounch;
+use function BrainGames\Engine\launchGame;
 
 use const BrainGames\Engine\ROUNDS_COUNT;
 
@@ -26,7 +26,7 @@ function run()
         }
         $questionsAndAnswers = array_merge($questionsAndAnswers, getProgression($progressionArr));
     }
-    gameLounch(TASK, $questionsAndAnswers);
+    launchGame(TASK, $questionsAndAnswers);
 }
 
 function getProgression(array $startArray)

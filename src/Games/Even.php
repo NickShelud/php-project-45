@@ -4,7 +4,7 @@ namespace BrainGames\Even;
 
 use function cli\line;
 use function cli\prompt;
-use function BrainGames\Engine\gameLounch;
+use function BrainGames\Engine\launchGame;
 
 use const BrainGames\Engine\ROUNDS_COUNT;
 
@@ -18,7 +18,7 @@ function run()
         $questionsAndAnswers["{$randDigit}"] = true === isEven($randDigit) ? 'yes' : 'no';
     }
 
-    gameLounch(TASK, $questionsAndAnswers);
+    launchGame(TASK, $questionsAndAnswers);
 }
 
 function isEven(int $digit)
