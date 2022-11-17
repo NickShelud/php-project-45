@@ -15,40 +15,27 @@ function run()
     $gameData = [];
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
-        $firstDigit = rand(1, 100);
-        $gameData['firstDigit'][] = $firstDigit;
+        $firstNumber = rand(1, 100);
+        $secondNumber = rand(1, 100);
 
-        $secondDigit = rand(1, 100);
-        $gameData['secondDigit'][] = $secondDigit;
+        $task = "{$firstNumber} {$secondNumber}";
 
-        $gameData['task'][] = "{$firstDigit} {$secondDigit}";
+        $gameData[$task] = getGcd($firstNumber, $secondNumber);
     }
 
-    launchGame(TASK, getGcd($gameData));
+    launchGame(TASK, $gameData);
 }
 
-function getGcd(array $dataForGame)
+function getGcd(int $firstNumber, int $secondNumber)
 {
-    $firstDigit = $dataForGame['firstDigit'];
-    $secondDigit = $dataForGame['secondDigit'];
-    $gameTask = $dataForGame['task'];
-    $correctAnswer = [];
-    $firstDigitDivider = [];
-    $secondDigitDivider = [];
-    $questionsAndAnswers = [];
-
-    for ($j = 0; $j < ROUNDS_COUNT; $j++) {
-        $commonDivisor = [];
-
-        $smallestDigit = $firstDigit[$j] > $secondDigit[$j] ? $secondDigit[$j] : $firstDigit[$j];
-        for ($i = 1; $i <= $smallestDigit; $i++) {
-            if ($firstDigit[$j] % $i === 0 and $secondDigit[$j] % $i === 0) {
-                $commonDivisor[] = $i;
-            }
+    $commonDivisor = [];
+    $smallestNumber = $firstNumber > $secondNumber ? $secondNumber : $firstNumber;
+    for ($i = 1; $i <= $smallestNumber; $i++) {
+        if ($firstNumber % $i === 0 and $secondNumber % $i === 0) {
+            $commonDivisor[] = $i;
         }
-
-        $questionsAndAnswers[$gameTask[$j]] = max($commonDivisor);
     }
+    $answer = max($commonDivisor);
 
-    return $questionsAndAnswers;
+    return $answer;
 }

@@ -15,16 +15,16 @@ function run()
     $questionsAndAnswers = [];
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
-        $randDigit = rand(1, 100);
-        $questionsAndAnswers[$randDigit] = checkPrime($randDigit) === true ? 'yes' : 'no';
+        $randNumber = rand(1, 100);
+        $questionsAndAnswers[$randNumber] = isPrime($randNumber) ? 'yes' : 'no';
     }
     launchGame(TASK, $questionsAndAnswers);
 }
 
-function checkPrime(int $digit)
+function isPrime(int $number)
 {
-    for ($i = 2; $i < $digit; $i++) {
-        if ($digit % $i === 0) {
+    for ($i = 2; $i < $number; $i++) {
+        if ($number % $i === 0) {
             return false;
         }
     }

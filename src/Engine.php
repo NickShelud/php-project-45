@@ -8,16 +8,16 @@ use function cli\prompt;
 //number of game iterations
 const ROUNDS_COUNT = 3;
 
-function launchGame(string $task, array $questionsAndAnswers)
+function launchGame(string $gameDescription, array $round)
 {
     line('Welcome to the Brain Games!');
     $name = prompt('May I have your name?');
     line("Hello, %s!", $name);
 
-    line($task);
+    line($gameDescription);
 
-    foreach ($questionsAndAnswers as $gameTask => $correctAnswer) {
-        $question = line("Question: {$gameTask}");
+    foreach ($round as $gameTask => $correctAnswer) {
+        line("Question: {$gameTask}");
         $playerAnswer = prompt("Your answer");
 
         if ($playerAnswer === (string) $correctAnswer) {

@@ -16,25 +16,33 @@ function run()
 
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $differenceProgression = rand(1, 15);
-        $startDigit = rand(0, 20);
+        $startNumber = rand(0, 20);
 
-        $countDigitInArr = rand(5, 10);
-        $progressionArr = [$startDigit];
+        $countDigitInProgression = rand(5, 10);
+        $progression = createProgression($startNumber, $differenceProgression, $countDigitInProgression);
 
-        for ($j = 1; $j <= $countDigitInArr; $j++) {
-            $progressionArr[] = $progressionArr[$j - 1] + $differenceProgression;
-        }
-        $questionsAndAnswers = array_merge($questionsAndAnswers, getProgression($progressionArr));
+        $questionsAndAnswers = array_merge($questionsAndAnswers, getProgression($progression));
     }
     launchGame(TASK, $questionsAndAnswers);
 }
 
-function getProgression(array $startArray)
+function getProgression(array $startProgression)
 {
-    $iRandIndex = rand(1, count($startArray) - 1);
-    $hiddenDigit = $startArray[$iRandIndex];
-    $startArray[$iRandIndex] = '..';
-    $gameTask = implode(' ', $startArray);
+    $iRandIndex = rand(1, count($startProgression) - 1);
+    $hiddenDigit = $startProgression[$iRandIndex];
+    $startProgression[$iRandIndex] = '..';
+    $gameTask = implode(' ', $startProgression);
 
     return ["{$gameTask}" => $hiddenDigit];
+}
+
+function createProgression(int $startNumber, int $differenceProgression, int $countDigitInProgression)
+{
+    $progression = [$startNumber];
+
+    for ($i = 1; $i <= $countDigitInProgression; $i++) {
+        $progression[] = $progression[$i - 1] + $differenceProgression;
+    }
+
+    return $progression;
 }

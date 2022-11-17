@@ -12,46 +12,34 @@ const TASK = 'What is the result of the expression?';
 
 function run()
 {
-    $gameTask = [];
     $gameData = [];
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
         $argumentOne = rand(1, 100);
-        $gameData['firstArr'][] = $argumentOne;
-
         $argumentTwo = rand(1, 100);
-        $gameData['secondArr'][] = $argumentTwo;
 
         $operation = ['+', '-', '*'];
         $operatorForTask = $operation[array_rand($operation)];
 
-        $gameData['operator'][] = $operatorForTask;
+        $task = "{$argumentOne} {$operatorForTask} {$argumentTwo}";
 
-        $gameData['task'][] = "{$argumentOne} {$operatorForTask} {$argumentTwo}";
+        $gameData[$task] = getCalculate($argumentOne, $argumentTwo, $operatorForTask);
     }
-    launchGame(TASK, calculate($gameData));
+    launchGame(TASK, $gameData);
 }
 
-function calculate(array $dataForGame)
+function getCalculate(int $argumentOne, int $argumentTwo, string $operatorForTask)
 {
-    $argumentOne = $dataForGame['firstArr'];
-    $argumentTwo = $dataForGame['secondArr'];
-    $operatorForTask = $dataForGame['operator'];
-    $gameTask = $dataForGame['task'];
-    $questionsAndAnswers = [];
-
-    for ($i = 0; $i < ROUNDS_COUNT; $i++) {
-        switch ($operatorForTask[$i]) {
-            case '+':
-                $questionsAndAnswers[$gameTask[$i]] = $argumentOne[$i] + $argumentTwo[$i];
-                break;
-            case '-':
-                $questionsAndAnswers[$gameTask[$i]] = $argumentOne[$i] - $argumentTwo[$i];
-                break;
-            case '*':
-                $questionsAndAnswers[$gameTask[$i]] = $argumentOne[$i] * $argumentTwo[$i];
-                break;
-        }
+    switch ($operatorForTask) {
+        case '+':
+            $answers = $argumentOne + $argumentTwo;
+            break;
+        case '-':
+            $answers = $argumentOne - $argumentTwo;
+            break;
+        case '*':
+            $answers = $argumentOne * $argumentTwo;
+            break;
     }
 
-    return $questionsAndAnswers;
+    return $answers;
 }

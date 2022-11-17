@@ -14,8 +14,8 @@ function run()
 {
     $questionsAndAnswers = [];
     for ($i = 0; $i < ROUNDS_COUNT; $i++) {
-        $randDigit = rand(1, 100);
-        $questionsAndAnswers["{$randDigit}"] = true === isEven($randDigit) ? 'yes' : 'no';
+        $randNumber = rand(1, 100);
+        $questionsAndAnswers["{$randNumber}"] = isEven($randNumber) ? 'yes' : 'no';
     }
 
     launchGame(TASK, $questionsAndAnswers);
