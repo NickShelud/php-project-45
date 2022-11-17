@@ -31,13 +31,13 @@ function getCalculate(int $argumentOne, int $argumentTwo, string $operatorForTas
 {
     switch ($operatorForTask) {
         case '+':
-            $answers = $argumentOne + $argumentTwo;
+            return $argumentOne + $argumentTwo;
             break;
         case '-':
-            $answers = $argumentOne - $argumentTwo;
+            return $argumentOne - $argumentTwo;
             break;
         case '*':
-            $answers = $argumentOne * $argumentTwo;
+            return $argumentOne * $argumentTwo;
             break;
     }
 
