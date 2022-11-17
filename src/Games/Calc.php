@@ -40,6 +40,4 @@ function getCalculate(int $argumentOne, int $argumentTwo, string $operatorForTas
             return $argumentOne * $argumentTwo;
             break;
     }
-
-    return $answers;
 }
