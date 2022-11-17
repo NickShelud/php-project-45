@@ -32,12 +32,9 @@ function getCalculate(int $argumentOne, int $argumentTwo, string $operatorForTas
     switch ($operatorForTask) {
         case '+':
             return $argumentOne + $argumentTwo;
-            break;
         case '-':
             return $argumentOne - $argumentTwo;
-            break;
         case '*':
             return $argumentOne * $argumentTwo;
-            break;
     }
 }
